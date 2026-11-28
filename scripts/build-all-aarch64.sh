@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build one AArch64 desktop image containing Vinix's default software set.
 # Large applications that can be installed on demand are deliberately left
 # out. Individual layer builders remain useful while developing a component;

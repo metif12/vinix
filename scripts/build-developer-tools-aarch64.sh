@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage a native development environment for the Vinix aarch64 userland.
 set -euo pipefail
 

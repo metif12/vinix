@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Assemble the amd64 Vinix userland from official Alpine binaries and create
 # an initramfs that boots directly into Alpine BusyBox.
 set -euo pipefail

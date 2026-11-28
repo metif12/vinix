@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the aarch64 Alpine userland, optimized musl, Vinix kernel, and UEFI ISO.
 # The command suite and guest GCC remain Alpine's packaged binaries.
 set -euo pipefail

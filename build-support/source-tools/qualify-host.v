@@ -85,7 +85,7 @@ fn qualify() ! {
 	checked(['/usr/bin/nm', '-gU', work + '/header-probe.dylib'], environment, work + '/header-exports.log')!
 	for path in ['tests/ios/reference-frameworks.sh', 'examples/ios-2048/build.sh', 'examples/ios-calculator/build.sh',
 		'scripts/build-blender-native-aarch64.sh', 'build-support/build-v-host-library.sh'] {
-		checked(['/bin/bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(path) + '-syntax.log')!
+		checked(['bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(path) + '-syntax.log')!
 	}
 	if profile == 'arm' {
 		// Build actual signed bundles with the retained recipes. The pinned
@@ -94,11 +94,11 @@ fn qualify() ! {
 		app_environment['VINIX_IOS_CALCULATOR_BUILD_DIR'] = work + '/calculator'
 		app_environment['IOS_CLANG'] = '/usr/bin/clang'
 		app_environment['IOS_LD'] = '/opt/homebrew/bin/ld64.lld'
-		checked(['/bin/bash', root + '/examples/ios-calculator/build.sh'], app_environment, work + '/calculator-build.log')!
+		checked(['bash', root + '/examples/ios-calculator/build.sh'], app_environment, work + '/calculator-build.log')!
 		os.mkdir(work + '/game')!
 		checked(['/usr/bin/git', 'clone', '--shared', root + '/build/ios/2048/source', work + '/game/source'], environment, work + '/game-clone.log')!
 		app_environment['VINIX_IOS_2048_BUILD_DIR'] = work + '/game'
-		checked(['/bin/bash', root + '/examples/ios-2048/build.sh'], app_environment, work + '/game-build.log')!
+		checked(['bash', root + '/examples/ios-2048/build.sh'], app_environment, work + '/game-build.log')!
 		for package in [work + '/calculator/Calculator.ipa', work + '/game/NumberTileGame.ipa'] {
 			checked(['/usr/bin/unzip', '-t', package], environment, package + '-test.log')!
 		}

@@ -11,7 +11,7 @@ pub fn static_desktop(context Context) !int {
 	mut env := os.environ()
 	settings := {'V': context.root + '/build/useralloc-final-audit/compiler/v', 'VINIX_AARCH64_SYSROOT': state + '/sysroot', 'VINIX_AARCH64_APP_CACHE': state + '/app-cache', 'VINIX_MUSL_BUILD_DIR': state + '/musl-cache', 'VINIX_MUSL_CC_AARCH64': '/opt/homebrew/Cellar/musl-cross/0.9.11/libexec/bin/aarch64-linux-musl-gcc', 'VINIX_UI2_SOURCE': state + '/ui2', 'LLVM_BIN': state + '/llvm-bin'}
 	for key, value in settings { env[key] = value }
-	command := ['/bin/bash', '-x', private + '/scripts/build-desktop-aarch64.sh', '--no-initramfs']
+	command := ['bash', '-x', private + '/scripts/build-desktop-aarch64.sh', '--no-initramfs']
 	// An old private checkout must be updated to native producer entrypoints
 	// explicitly before its builder can be executed under the V-only rule.
 	ensure_native_script(command[2])!

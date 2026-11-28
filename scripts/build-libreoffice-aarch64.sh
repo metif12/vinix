@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage LibreOffice and its Linux/aarch64 runtime for Vinix.
 #
 # LibreOffice's toolkit layer is VCL, which Alpine builds with a GTK 3 plugin

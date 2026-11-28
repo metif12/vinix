@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Fast build + run cycle for Vinix aarch64 in QEMU
 # Usage: ./scripts/run-aarch64.sh [--no-build] [--serial] [--virtio-gpu|--virgl|--venus]
 #                         [--fake-g17]

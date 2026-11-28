@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Compile a UIKit Objective-C calculator for an ARM64 iOS device.
 set -euo pipefail
 SOURCE="$(cd "$(dirname "$0")" && pwd)"

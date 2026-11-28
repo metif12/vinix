@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the committed desktop for AArch64 and publish it as one or more native
 # applications to running QEMU guests:
 #

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Cross-compile the Vinix desktop environment for aarch64 and stage it into an
 # initramfs that boots straight into it.
 #

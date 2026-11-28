@@ -115,7 +115,7 @@ fn qualify() ! {
 	for path in ['scripts/build-venus-aarch64.sh', 'scripts/build-asahi-aarch64.sh', 'scripts/build-hyprland-aarch64.sh',
 		'scripts/build-qemu-system-aarch64.sh', 'scripts/build-chromium-aarch64.sh',
 		'scripts/build-libreoffice-aarch64.sh', 'scripts/build-x86-translation-aarch64.sh'] {
-		checked(['/bin/bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(path) + '-syntax.log')!
+		checked(['bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(path) + '-syntax.log')!
 	}
 	os.write_file(work + '/real-data.json', json2.encode(json2.Any({'mesa_blake2b': json2.Any(graphicsbuild.mesa_digest),
 		'packages': json2.Any(packages.len), 'private_libraries': json2.Any(libraries)}), prettify: true) + '\n')!

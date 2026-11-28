@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage OpenJDK (JDK plus its full JRE) for the Vinix aarch64 userland.
 set -euo pipefail
 

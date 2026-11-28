@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the Limine aarch64 UEFI loader used by both scripts/run-aarch64.sh and
 # scripts/deploy-m1-efi.sh.
 #

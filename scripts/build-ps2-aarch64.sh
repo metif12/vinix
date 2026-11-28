@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the native Vinix PlayStation 2 frontend and pinned Iris core.
 set -euo pipefail
 WITH_HOMEBREW=1

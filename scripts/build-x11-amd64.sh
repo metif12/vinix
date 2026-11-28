@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the amd64 X11 layer into build-amd64-x11: the arm64 script, run for x86_64.
 set -euo pipefail
 

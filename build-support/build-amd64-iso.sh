@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Assemble an amd64 ISO around an already-built kernel and initramfs. It boots
 # through either BIOS or UEFI, from a CD or written to a disk: VirtualBox VMs
 # start in BIOS mode unless EFI is switched on. Limine's pinned release

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build and boot the amd64 Vinix desktop in QEMU.
 #
 # Usage: ./scripts/run-desktop-amd64.sh [options]

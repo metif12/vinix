@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Compile standard C++ headers into an iOS ARM64 Mach-O. Only linker stubs are
 # used; no Apple libraries or framework binaries are copied into Vinix.
 set -euo pipefail

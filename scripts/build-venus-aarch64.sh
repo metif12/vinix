@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Cross-build a private Mesa Venus runtime for Vinix on KekVM.
 set -euo pipefail
 repo=$(cd "$(dirname "$0")/.." && pwd)

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage the Go compiler and standard library for the Vinix aarch64 userland.
 set -euo pipefail
 

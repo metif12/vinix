@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the Mesa Asahi and VirGL userspace used by Vinix/aarch64.
 #
 # By default this is the Mesa Omarchy packages, omacom/mesa at the pinned

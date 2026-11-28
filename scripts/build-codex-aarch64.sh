@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage the official Codex CLI ARM64/musl package for Vinix.
 set -euo pipefail
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Assemble an aarch64 UEFI ISO around an already-built kernel and initramfs.
 # Limine's EFI boot image comes from its pinned release; the loader inside it
 # is that release built with Vinix's base revision patch

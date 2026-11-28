@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Validate the exact kernel/userspace payload required for a native M1 AGX
 # test. This intentionally checks the selected initramfs rather than a host
 # staging tree: only the archive copied to the ESP matters on hardware.

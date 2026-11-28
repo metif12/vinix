@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the Vinix Aquamarine backend and stage Hyprland for Vinix/aarch64.
 #
 # Hyprland itself comes from Alpine edge's musl package; Aquamarine is rebuilt

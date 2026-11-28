@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Assemble a raw FAT32 UEFI disk for the amd64 QEMU runner. This is the
 # portable fallback when xorriso is unavailable; release artifacts remain ISO.
 set -euo pipefail

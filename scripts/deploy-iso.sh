@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the amd64 and arm64 Vinix ISOs, boot-test them, and publish them as a
 # GitHub release.
 #

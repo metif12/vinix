@@ -81,7 +81,7 @@ fn qualify() ! {
 	os.write_file(work + '/driver-empty.log', empty.stdout + empty.stderr)!
 	assert empty.status != 0 && empty.stderr.contains('no V tests in ')
 	for suite in ['tests/clock-control/run-host.sh', 'tests/mapped-writeback/run-host.sh', 'tests/private-pages/run-host.sh', 'tests/m1-deploy/run.sh'] {
-		checked(['/bin/bash', root + '/' + suite], environment, work + '/' + suite.split('/')[1] + '.log')!
+		checked(['bash', root + '/' + suite], environment, work + '/' + suite.split('/')[1] + '.log')!
 	}
 	for file_pages in ['0', '1'] {
 		for paging in ['0', '1'] {
@@ -95,7 +95,7 @@ fn qualify() ! {
 		'desktop/tools/test-utility-parity.sh', 'desktop/tools/test-window-experience.sh',
 		'tests/clock-control/run-host.sh', 'tests/mapped-writeback/run-host.sh',
 		'tests/private-pages/run-host.sh', 'tests/m1-deploy/run.sh'] {
-		checked(['/bin/bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(os.dir(path)) + '-' + os.file_name(path) + '-syntax.log')!
+		checked(['bash', '-n', root + '/' + path], environment, work + '/' + os.file_name(os.dir(path)) + '-' + os.file_name(path) + '-syntax.log')!
 	}
 	os.write_file(work + '/qualification.json', json2.encode(json2.Any({'status': json2.Any('PASS'),
 		'profile': json2.Any(profile), 'receipts': json2.Any(receipts),

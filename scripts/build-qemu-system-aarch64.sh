@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage a native AArch64 QEMU system emulator and UEFI firmware for Vinix.
 set -euo pipefail
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage a CPython 3 for the Vinix aarch64 (or amd64) userland.
 #
 # CPython is reused from Alpine. The native V smoke controller is compiled

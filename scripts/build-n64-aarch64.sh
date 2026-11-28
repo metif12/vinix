@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the native Vinix Nintendo 64 frontend and pinned paraLLEl-N64 core.
 set -euo pipefail
 WITH_HOMEBREW=1

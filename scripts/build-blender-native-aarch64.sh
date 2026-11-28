@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build Blender 4.3 with the native Vinix GHOST backend on Alpine/aarch64.
 # The resulting executable uses surfaceless EGL and Vinix's shared-surface ABI;
 # neither X11 nor Wayland is compiled into its window-system layer.

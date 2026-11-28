@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the V Mach-O compatibility runner as a static ARM64 Vinix executable.
 set -euo pipefail
 WITH_2048=0

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Deploy Vinix ARM64 boot files to an already-mounted EFI System Partition.
 # Usage: ./scripts/deploy-m1-efi.sh [--apple-studio-display] [--desktop-initramfs] /path/to/mounted/esp
 

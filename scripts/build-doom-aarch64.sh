@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build upstream Chocolate Doom and stage it with SDL2 and SDL2_mixer for the
 # AArch64 desktop. The WAD is local input and is never checked into the
 # repository.

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage the Docker engine, CLI, containerd and runc for the Vinix aarch64
 # userland, together with an offline busybox image for the smoke test.
 set -euo pipefail

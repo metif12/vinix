@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage Ruby for the Vinix aarch64 userland from Alpine's musl packages.
 set -euo pipefail
 

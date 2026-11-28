@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build and boot Vinix into its desktop, in QEMU. One command for the GUI.
 #
 # Usage: ./scripts/run-desktop-aarch64.sh [options]

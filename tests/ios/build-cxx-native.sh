@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # SPDX-License-Identifier: GPL-2.0-or-later
 # Use the runner's actual archive with ELF unwind metadata. This validates the
 # legacy throwing helpers without implying support for Mach-O unwinding.

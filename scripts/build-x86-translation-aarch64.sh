@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage QEMU user-mode x86 translation and optional Win64/Win32 Wine runtimes
 # for Vinix/aarch64. All runtimes use Alpine 3.21's musl ABI.
 set -euo pipefail

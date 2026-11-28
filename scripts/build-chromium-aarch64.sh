@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage Chromium and its Linux/aarch64 runtime for Vinix.
 #
 # Chromium is a multi-process browser whose Linux port assumes namespaces,

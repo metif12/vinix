@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Install a verified, self-contained Oh My Zsh tree into a staged Vinix root.
 set -euo pipefail
 

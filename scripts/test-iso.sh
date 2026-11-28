@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Boot Vinix ISOs the way a user would and check that they reach the desktop.
 #
 # Usage: ./scripts/test-iso.sh [options] ISO...

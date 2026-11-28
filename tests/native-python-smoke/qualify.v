@@ -118,7 +118,7 @@ fn run() ! {
 		assert result.status in [1, 2] && !os.exists(work + '/invalid')
 	}
 	for path in ['scripts/build-python-aarch64.sh', 'scripts/build-developer-tools-aarch64.sh', 'tests/developer-tools/smoke.sh'] {
-		checked(['/bin/bash', '-n', root + '/' + path], os.environ(), work + '/syntax-' + os.file_name(path) + '.log')!
+		checked(['bash', '-n', root + '/' + path], os.environ(), work + '/syntax-' + os.file_name(path) + '.log')!
 	}
 	os.write_file(work + '/qualification.json', json2.encode(json2.Any({
 		'status':   json2.Any('PASS')

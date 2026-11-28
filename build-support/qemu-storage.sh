@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Shared host-side storage helpers for the AArch64 QEMU launchers.
 
 vinix_storage_file_size() {

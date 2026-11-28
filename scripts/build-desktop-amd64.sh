@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the native Vinix desktop for amd64 and assemble a dedicated boot ISO.
 #
 # The desktop uses the base image's optimized musl allocator; normal commands

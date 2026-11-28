@@ -44,7 +44,7 @@ fn qualify() ! {
 	assert missing.status == 1 && missing.stderr.contains('missing')
 	checked([work + '/smoke-qualifier', compiler, work + '/smoke', profile], environment, work + '/smoke.log')!
 	for path in ['scripts/build-qemu-input.sh', 'build-support/virglrenderer/build-host.sh', 'build-support/generator-sdk'] {
-		checked(['/bin/bash', '-n', root + '/' + path], environment, work + '/syntax-' + os.file_name(path) + '.log')!
+		checked(['bash', '-n', root + '/' + path], environment, work + '/syntax-' + os.file_name(path) + '.log')!
 	}
 	mut inputs := map[string]json2.Any{}
 	for path in ['build-support/generator-sdk.v', 'build-support/generator-sdk', 'build-support/generatorsdk/core.v',

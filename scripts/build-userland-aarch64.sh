@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Assemble the aarch64 Vinix userland from official Alpine binaries.
 #
 # The base filesystem, BusyBox, musl, Linux headers, and optional guest GCC

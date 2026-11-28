@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage Valve's Linux Steam client for Vinix/aarch64.
 #
 # Steam is only published for x86 Linux, so it runs through the QEMU user-mode

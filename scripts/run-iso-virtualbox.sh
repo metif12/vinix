@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Create a VirtualBox VM for a Vinix ISO and start it.
 #
 # Usage: ./scripts/run-iso-virtualbox.sh [options] vinix-amd64.iso|vinix-arm64.iso

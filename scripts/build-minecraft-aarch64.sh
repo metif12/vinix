@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage Minecraft: Java Edition for the Vinix aarch64 desktop.
 #
 # The game itself is downloaded from Mojang's own distribution endpoints at

@@ -80,9 +80,9 @@ fn qualify() ! {
 	failed_env=env.clone();failed_env['V']='/usr/bin/false'
 	failed_guest:=sourcecommand.capture_full([work+'/stage',work+'/preserved-trimmer'],failed_env,20,65536,cachecli.cancelled)!
 	assert failed_guest.status!=0 && os.read_file(work+'/preserved-trimmer')! == 'old guest output'
-	checked(['/bin/bash','-n',root+'/scripts/test-iso.sh'],env,work+'/iso-syntax.log')!
+	checked(['bash','-n',root+'/scripts/test-iso.sh'],env,work+'/iso-syntax.log')!
 	checked(['/bin/sh','-n',root+'/tests/opengothic/kekvm-guest.sh'],env,work+'/guest-syntax.log')!
-	checked(['/bin/bash',root+'/scripts/test-iso.sh','--help'],env,work+'/iso-help.log')!
+	checked(['bash',root+'/scripts/test-iso.sh','--help'],env,work+'/iso-help.log')!
 	inputs:=hosttest.hashes([root+'/tools/qmpclient/core.v',root+'/tools/qmpclient/raw.v',root+'/tools/qmpclient/owned.v',
 		root+'/build-support/source-tools/main.v',root+'/build-support/source-tools/sourcefixture/core.v',
 		root+'/build-support/source-tools/check-qmp.v',root+'/build-support/source-tools/stage-trimmer.v',root+'/build-support/source-tools/trim-cmake.v'])!

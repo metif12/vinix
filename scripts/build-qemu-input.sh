@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build a private host QEMU whose VirtIO tablet forwards horizontal wheels.
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

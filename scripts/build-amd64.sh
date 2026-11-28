@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the amd64 Alpine userland, Vinix kernel, and bootable UEFI ISO. The
 # commands and GCC come from Alpine; musl includes Vinix heap reuse and the
 # kernel uses the host clang directly.

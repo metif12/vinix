@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage network-facing developer tools for the Vinix aarch64 (or amd64) userland.
 set -euo pipefail
 

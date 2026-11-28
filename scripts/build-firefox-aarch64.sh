@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage Firefox ESR and its Linux/aarch64 (or x86_64) runtime for Vinix.
 #
 # Firefox's widgets are Gecko/XUL, but its Linux window-system glue is GTK 3.

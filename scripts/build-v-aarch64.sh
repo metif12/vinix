@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Cross-build the current pinned V compiler for Vinix/AArch64 (or amd64, with
 # VINIX_ARCH=x86_64 as scripts/build-v-amd64.sh sets it) and stage the matching vlib
 # tree. The resulting layer is merged into every desktop image,

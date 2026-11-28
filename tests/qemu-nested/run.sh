@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Boot one Vinix VM, then boot a second Vinix VM using QEMU within the first.
 set -euo pipefail
 

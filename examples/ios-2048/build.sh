@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the pinned upstream iOS app without modifying its Objective-C sources.
 set -euo pipefail
 SOURCE="$(cd "$(dirname "$0")" && pwd)"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build the native Vinix PlayStation frontend and pinned PCSX-ReARMed core.
 set -euo pipefail
 WITH_HOMEBREW=1

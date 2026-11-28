@@ -128,7 +128,7 @@ fn qualify() ! {
 	for path2 in ['tests/browsers/firefox-init.sh', 'tests/browsers/chromium-init.sh',
 		'tests/browsers/desktop-init.sh', 'tests/office/libreoffice-init.sh',
 		'tests/packages/obs-init.sh', 'scripts/build-desktop-aarch64.sh'] {
-		checked(['/bin/bash', '-n', root + '/' + path2], environment, work + '/' + os.file_name(path2) + '-syntax.log')!
+		checked(['bash', '-n', root + '/' + path2], environment, work + '/' + os.file_name(path2) + '-syntax.log')!
 	}
 	os.write_file(work + '/qualification.json', json2.encode(json2.Any({
 		'status':   json2.Any('PASS')

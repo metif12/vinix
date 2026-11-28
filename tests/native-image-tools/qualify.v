@@ -67,7 +67,7 @@ fn run() ! {
 	for path in ['scripts/build-vinix-guest-disk.sh', 'build-support/human-size'] {
 		checked(['/bin/sh', '-n', root + '/' + path], work + '/' + os.file_name(path) + '-syntax.log')!
 	}
-	checked(['/bin/bash', '-n', root + '/scripts/deploy-iso.sh'], work + '/deploy-syntax.log')!
+	checked(['bash', '-n', root + '/scripts/deploy-iso.sh'], work + '/deploy-syntax.log')!
 	os.write_file(work + '/qualification.json', json2.encode(json2.Any({
 		'status':   json2.Any('PASS')
 		'profile':  json2.Any(profile)

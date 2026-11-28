@@ -184,7 +184,7 @@ fn workspace_contender(root string, phase string, environment map[string]string)
 	mut env := environment.clone()
 	env['VINIX_ASSET_TEST_OUT'] = root + '/build-release/' + tag
 	env['VINIX_ASSET_TEST_CASE'] = 'workspace-contender'
-	return command('/bin/bash', [root + '/scripts/deploy-iso.sh', '--tag=' + tag, '--arch=amd64',
+	return command('bash', [root + '/scripts/deploy-iso.sh', '--tag=' + tag, '--arch=amd64',
 		'--no-test', '--no-publish'], root, env)
 }
 
@@ -768,7 +768,7 @@ fn recovery_attempt(root string, work string, environment map[string]string, sce
 	env['VINIX_ASSET_TEST_CASE'] = scenario
 	mut args := [root + '/scripts/deploy-iso.sh', '--yes']
 	args << options
-	code, log := command('/bin/bash', args, root, env)
+	code, log := command('bash', args, root, env)
 	os.write_file(work + '/' + scenario + '.log', log)!
 	if (code == 0) != (expected_error == '') || !log.contains(expected_error)
 		|| log.contains('Building the amd64 image') || log.contains('Boot-testing the images') {
@@ -1644,7 +1644,7 @@ fn run() ! {
 		}
 		if scenario == 'build-only' { args << ['--arch=amd64', '--no-publish'] }
 		if scenario in ['publish-no-test', 'packages-no-test', 'oversize-no-test']! { args << ['--no-test'] }
-		code, log := command('/bin/bash', args, root, environment)
+		code, log := command('bash', args, root, environment)
 		os.write_file(work + '/' + scenario + '.log', log)!
 		if os.ls(root + '/build-release/work')!.any(it.starts_with('release-assets.')) {
 			return error('release left a private staging directory: ' + scenario)

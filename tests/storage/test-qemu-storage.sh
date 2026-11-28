@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eu
 
 repo="$(CDPATH= cd -- "$(dirname -- "$0")/../.." && pwd)"

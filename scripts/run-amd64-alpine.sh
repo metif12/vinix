@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build an Alpine x86_64 initramfs and boot it on Vinix under QEMU. The test
 # succeeds only after unmodified, dynamically linked Alpine BusyBox binaries
 # exercise exec, pipes, fork/wait, uname and ordinary shell execution.

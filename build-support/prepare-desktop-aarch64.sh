@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Prepare the required desktop layers on a fresh checkout. Optional language
 # runtimes and applications remain the responsibility of their own builders.
 set -euo pipefail

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -euo pipefail
 REPO="$(cd "$(dirname "$0")/../.." && pwd)"
 OUTPUT="${VINIX_IOS_2048_BUILD_DIR:-$REPO/build/ios/2048}"

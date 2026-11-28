@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build and boot the Vinix Hyprland desktop in QEMU.
 #
 # First build the Hyprland layer in the Debian ARM64 build VM with

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Stage the translated Linux Dota 2 runtime. Valve's game files stay separate.
 set -euo pipefail
 

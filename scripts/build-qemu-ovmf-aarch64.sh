@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build AArch64 OVMF with a real 2048x1536 ramfb GOP mode for desktop QEMU.
 set -euo pipefail
 

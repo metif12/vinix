@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Package VOffice Writer and Calc for Vinix as the release asset that
 # `pkg install voffice` downloads. The desktop image never runs this: VOffice
 # is an optional application whose source is a separate checkout.

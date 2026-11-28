@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Compatibility entry point for the former native-VM userland build.
 #
 # The regular builder is host-independent now that the base filesystem and
