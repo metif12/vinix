@@ -2,17 +2,12 @@
 # Bootstrap a pinned, known-working V compiler for the Wi-Fi build.
 # Refuse an existing destination; never reset/clean a user's compiler checkout.
 #
-# Previously pinned to 71437d263bfc57f99e27588781f34bfc91746910 (V1-era) via
-# a manual two-repo (v + vc) bootstrap with `-old-compiler`. That pin predates
-# vinix's kernel Makefile requiring -target-libc-headers (added once V's own
-# V1 fallback backend was retired), so it fails outright with "Unknown
-# argument `-target-libc-headers`" on every build from that point on -- not a
-# transient CI flake, a permanent mismatch between this pin and what the
-# kernel build now unconditionally passes. This repoints to a verified-
-# working commit and drops the manual vc bootstrap: V's own `make` already
-# performs the equivalent v1/v2 bootstrap internally (confirmed against this
-# exact commit), so replicating it by hand here was solving an already-solved
-# problem and only needed updating in one more place when it broke.
+# The pin must agree with the kernel's platform integer types. The kernel
+# migrated `usize`/`isize` to `uint`/`int` in fcdf20313; a V older than
+# fca9fad345 still declares builtin `C.memcpy`/`C.memset` with `usize`, so it
+# rejects the kernel's `uint` declarations as conflicting signatures. This
+# pin is from after that compiler change and is paired with the vc snapshot
+# generated from it, so a clean bootstrap is reproducible.
 #
 # V's own bootstrap compiler ("vc") is pinned too, not left to `make`'s
 # default `latest_vc` target: without `local=1`, a clean destination runs
@@ -26,8 +21,8 @@
 set -eu
 DEST=${1:-build-tools/v-m1-wifi}
 HOST_CC=${HOST_CC:-clang}
-PIN=7490a8ff04d91dc60eec12b0d9923b4d1bc87960
-VC_PIN=21490f7811a2dd366c3daa39bef8e53c1e3e5727
+PIN=eab77e7ec31516521d26b6d5e525aefe5987367b
+VC_PIN=0781dbf8ed16a8e9ebce3771a645b814456c0103
 if [ -e "$DEST" ]; then
     echo "Destination already exists: $DEST (set V to its v executable instead)" >&2
     exit 1
@@ -44,6 +39,16 @@ git -C "$DEST/vc" remote add origin https://github.com/vlang/vc.git
 git -C "$DEST/vc" fetch --depth=1 origin "$VC_PIN"
 git -C "$DEST/vc" checkout --detach FETCH_HEAD
 test "$(git -C "$DEST/vc" rev-parse HEAD)" = "$VC_PIN"
+# A shallow source checkout has no bundled Boehm GC archive, but the freshly
+# built compiler runs GC-enabled tools at the end of `make` and fails to link
+# them without it. Build the bundled amalgamation into the TCC library folder
+# first; the thread-enabled defines provide the GC_pthread_* and GC_dlopen
+# symbols the compiler's runtime helpers expect.
+mkdir -p "$DEST/thirdparty/tcc/lib"
+"$HOST_CC" -c -O2 -DGC_THREADS=1 -DTHREAD_LOCAL_ALLOC=1 -DGC_BUILTIN_ATOMIC=1 \
+    -I "$DEST/thirdparty/libgc/include" \
+    "$DEST/thirdparty/libgc/gc.c" -o "$DEST/thirdparty/tcc/lib/gc.o"
+ar rcs "$DEST/thirdparty/tcc/lib/libgc.a" "$DEST/thirdparty/tcc/lib/gc.o"
 CC="$HOST_CC" make -C "$DEST" local=1 VEXE="$DEST/v"
 "$DEST/v" version
 printf 'Compiler ready: %s/v\n' "$DEST"
