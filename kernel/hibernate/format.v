@@ -34,6 +34,20 @@ pub const block_bytes = u64(4096)
 pub const image_magic = u64(0x4249485849_4e4956)
 pub const format_version = u64(1)
 
+// What an image holds. A full image is a suspend to disk: the process that
+// asked for it returns with all its memory, threads and files. A
+// kernel-session image is taken before userland starts; entering it continues
+// a boot into a fresh userland rather than returning to a saved process.
+// The field is last in Header so the offsets of the fields v1 used do not
+// move. Images written by a v1 kernel are still refused: they carry another
+// kernel's digest.
+pub const kind_full = u64(0)
+pub const kind_kernel_session = u64(1)
+
+pub fn valid_kind(kind u64) bool {
+	return kind == kind_full || kind == kind_kernel_session
+}
+
 // What the machine was when the image was taken. A kernel is entered again
 // only on a machine that answers the same to every one of these: the image
 // holds pointers into the boot loader's and firmware's tables, the kernel's
@@ -114,6 +128,10 @@ pub mut:
 	copy_time  u64
 	write_time u64
 	machine    Machine
+	// Which of the kinds above this is. An image is entered only as its kind
+	// says: a full one by the process that asked for it, a kernel-session
+	// one by a boot that is starting userland afresh.
+	kind u64
 }
 
 // What the kernel that loaded the image tells the one inside it. It is
@@ -198,12 +216,22 @@ pub fn new_header(pages u64, sequence u64) Header {
 		version:  format_version
 		pages:    pages
 		sequence: sequence
+		kind:     kind_full
 	}
 	if pages != 0 {
 		header.list_offset = block_bytes
 		header.data_offset = block_bytes + list_bytes(pages)
 		header.end_offset = image_bytes(pages)
 	}
+	return header
+}
+
+// An image of the kernel and its drivers, taken before userland starts.
+// The pages and their layout are those of a full image; only what entering
+// it means is different.
+pub fn new_kernel_session_header(pages u64, sequence u64) Header {
+	mut header := new_header(pages, sequence)
+	header.kind = kind_kernel_session
 	return header
 }
 
@@ -231,6 +259,9 @@ pub fn judge_header(header &Header, device_bytes u64) (Verdict, string) {
 	}
 	if header.version != format_version {
 		return Verdict.damaged, 'it was written in a format this kernel does not read'
+	}
+	if !valid_kind(header.kind) {
+		return Verdict.damaged, 'its header describes an image kind this kernel does not read'
 	}
 	if header.checksum != header_checksum(header) {
 		return Verdict.damaged, 'its header does not match its checksum'

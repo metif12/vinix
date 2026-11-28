@@ -91,6 +91,41 @@ fn test_a_sealed_header_for_pages_is_an_image() {
 	assert why == ''
 }
 
+fn sample_session_header(pages u64) Header {
+	mut header := new_kernel_session_header(pages, 3)
+	header.list_checksum = 11
+	header.data_checksum = 22
+	header.entry = 0xffffffff802ef840
+	header.context = 0xffffffff80a00000
+	header.handover = 0x1234
+	header.taken_at = 1791664809
+	header.machine = sample_machine()
+	seal(mut header)
+	return header
+}
+
+fn test_a_full_image_is_the_default() {
+	header := new_header(10, 0)
+	assert header.kind == kind_full
+}
+
+fn test_a_kernel_session_image_is_an_image() {
+	header := sample_session_header(1000)
+	assert header.kind == kind_kernel_session
+	verdict, why := judge_header(&header, device)
+	assert verdict == .image
+	assert why == ''
+}
+
+fn test_an_unknown_image_kind_is_not_believed() {
+	mut header := sample_header(1000)
+	header.kind = 2
+	seal(mut header)
+	verdict, why := judge_header(&header, device)
+	assert verdict == .damaged
+	assert why.contains('image kind')
+}
+
 fn test_a_header_for_no_pages_is_a_claimed_device_with_no_image() {
 	mut header := new_header(0, 7)
 	seal(mut header)
