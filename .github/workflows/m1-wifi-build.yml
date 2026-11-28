@@ -22,7 +22,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Install build tools
-        run: sudo apt-get update && sudo apt-get install -y clang lld gcc make git curl
+        run: sudo apt-get update && sudo apt-get install -y clang lld gcc make git curl libarchive-dev
       - name: Bootstrap pinned V compiler
         run: sh tools/m1-wifi/get-v.sh /tmp/vinix-wifi-v
       - name: Compile native packaging and verification tools
