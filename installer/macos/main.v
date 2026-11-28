@@ -450,11 +450,20 @@ fn shell_quote(value string) string {
 	return "'" + value.replace("'", '\'"\'"\'') + "'"
 }
 
-fn launch_installer(support string, disk InstallDisk, space int, payload string, cleanup_payload bool) ! {
-	command_path := os.join_path(os.temp_dir(), 'vinix-installer-${os.getpid()}.command')
+// installer_launch_command builds the Terminal wrapper for the support script.
+// TMPDIR is exported explicitly: V's os.temp_dir() uses /tmp on macOS, while a
+// Terminal launched from Finder inherits TMPDIR under /var/folders, and the
+// support script uses TMPDIR to decide whether a payload may be cleaned up.
+fn installer_launch_command(support string, disk InstallDisk, space int, payload string, cleanup_payload bool) string {
 	payload_argument := if payload.len > 0 { ' --payload ${shell_quote(payload)}' } else { '' }
 	cleanup_argument := if cleanup_payload { ' --cleanup-payload' } else { '' }
-	command := '#!/bin/sh\nexec ${shell_quote(support)} --confirmed --disk ${shell_quote(disk.id)} --space-gb ${space}${payload_argument}${cleanup_argument}\n'
+	return '#!/bin/sh\nexport TMPDIR=${shell_quote(os.temp_dir())}\n' +
+		'exec ${shell_quote(support)} --confirmed --disk ${shell_quote(disk.id)} --space-gb ${space}${payload_argument}${cleanup_argument}\n'
+}
+
+fn launch_installer(support string, disk InstallDisk, space int, payload string, cleanup_payload bool) ! {
+	command_path := os.join_path(os.temp_dir(), 'vinix-installer-${os.getpid()}.command')
+	command := installer_launch_command(support, disk, space, payload, cleanup_payload)
 	os.write_file(command_path, command)!
 	os.chmod(command_path, 0o700)!
 	mut process := os.new_process('/usr/bin/open')

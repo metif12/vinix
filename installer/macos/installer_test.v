@@ -4,6 +4,7 @@
 
 module main
 
+import os
 import ui2
 
 fn find_installer_element(element ui2.Element, id string) ?ui2.Element {
@@ -72,6 +73,26 @@ fn test_allocation_validation_rejects_small_and_non_numeric_values() {
 
 fn test_shell_quote_handles_spaces_and_apostrophes() {
 	assert shell_quote("/Volumes/Alex's Disk") == '\'/Volumes/Alex\'"\'"\'s Disk\''
+}
+
+fn test_installer_command_exports_the_payload_temp_root() {
+	disk := InstallDisk{ id: 'disk0' }
+	command := installer_launch_command('/tmp/install-vinix.sh', disk, 32,
+		'/tmp/vinix-installer-payload-42/payload', true)
+	assert command.starts_with('#!/bin/sh\nexport TMPDIR=')
+	assert command.contains('export TMPDIR=' + shell_quote(os.temp_dir()))
+	assert command.contains('--disk ' + shell_quote('disk0'))
+	assert command.contains('--space-gb 32')
+	assert command.contains('--payload ' + shell_quote('/tmp/vinix-installer-payload-42/payload'))
+	assert command.contains('--cleanup-payload')
+}
+
+fn test_installer_command_omits_optional_arguments() {
+	disk := InstallDisk{ id: 'disk4' }
+	command := installer_launch_command('/tmp/install-vinix.sh', disk, 64, '', false)
+	assert command.contains('export TMPDIR=' + shell_quote(os.temp_dir()))
+	assert !command.contains('--payload')
+	assert !command.contains('--cleanup-payload')
 }
 
 fn test_download_progress_is_bounded_and_readable() {
