@@ -5,9 +5,11 @@
 # The pin must agree with the kernel's platform integer types. The kernel
 # migrated `usize`/`isize` to `uint`/`int` in fcdf20313; a V older than
 # fca9fad345 still declares builtin `C.memcpy`/`C.memset` with `usize`, so it
-# rejects the kernel's `uint` declarations as conflicting signatures. This
-# pin is from after that compiler change and is paired with the vc snapshot
-# generated from it, so a clean bootstrap is reproducible.
+# rejects the kernel's `uint` declarations as conflicting signatures. A pin
+# just after that change still emitted f64 helpers despite the kernel's
+# `-nofloat`, which cannot link under the kernel's `-mno-sse` C flags. This
+# pin is new enough to honour `-nofloat` and is paired with a vc snapshot
+# that builds it reproducibly from a clean checkout.
 #
 # V's own bootstrap compiler ("vc") is pinned too, not left to `make`'s
 # default `latest_vc` target: without `local=1`, a clean destination runs
@@ -21,8 +23,8 @@
 set -eu
 DEST=${1:-build-tools/v-m1-wifi}
 HOST_CC=${HOST_CC:-clang}
-PIN=eab77e7ec31516521d26b6d5e525aefe5987367b
-VC_PIN=0781dbf8ed16a8e9ebce3771a645b814456c0103
+PIN=000de877389b8aa63a0e0a3b62d588f9337df68a
+VC_PIN=06e7354cfcbfe73b75c2e430e98ee3eb8d09462d
 if [ -e "$DEST" ]; then
     echo "Destination already exists: $DEST (set V to its v executable instead)" >&2
     exit 1
