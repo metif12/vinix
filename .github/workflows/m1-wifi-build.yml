@@ -21,6 +21,10 @@ jobs:
       - uses: actions/checkout@v6
         with:
           persist-credentials: false
+          # The host tests compare against pinned pre-rewrite fixtures via
+          # `git show <original_revision>:...`, so the shallow default is not
+          # enough; those historical blobs must be present locally.
+          fetch-depth: 0
       - name: Install build tools
         run: sudo apt-get update && sudo apt-get install -y clang lld gcc make git curl libarchive-dev
       - name: Bootstrap pinned V compiler
